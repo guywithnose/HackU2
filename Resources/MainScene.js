@@ -57,9 +57,6 @@ function MainScene(window, game) {
     var jostleOrigY;
     var jostleDuration = 0;
 
-    var webview;
-    var webview_window;
-
     var bikeSprites = [
         'assets/cycle1.png',
         'assets/cycle2.png',
@@ -518,10 +515,6 @@ function MainScene(window, game) {
         game.moveCamera(zoomOutTransform);
     }
 
-    var hideWebView = function() {
-       webview_window.close(); 
-    };
-
     var openAbout = function() {
         about_webview = Titanium.UI.createWebView({url:'http://dev.mateoj.com/hacku/present.htm'});
         about_webview_window = Titanium.UI.createWindow();
@@ -536,10 +529,6 @@ function MainScene(window, game) {
     self.addEventListener('activated', function(e) {
         Ti.API.info("main scene is activated");
 
-        webview = Titanium.UI.createWebView({url:'http://dev.mateoj.com/hacku/phpservice'});
-        webview_window = Titanium.UI.createWindow();
-        webview_window.add(webview);
-        webview_window.open({modal:true});
         button = Titanium.UI.createButton({
             title: 'Close',
             top: 20,
@@ -554,7 +543,6 @@ function MainScene(window, game) {
             width: 150,
             height: 100
         });
-        webview_window.add(button);
         button.addEventListener('click', hideWebView);
         aboutCloseButton.addEventListener('click', closeAbout);
 
